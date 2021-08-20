@@ -3,7 +3,7 @@
 
 Copied by ear from the original Gameboy version by FCI / ERE Informatique, originally composed by Hitoshi Sakimoto ("Ymoh. S").
 
-Written in Z80 assembler for the Sam Coupé computer.  Includes tweaked Protracker compiled music player and sound effects processor expanded from Tetris/Flappy Bird.  Also included, demo program I used to show Rob Evans my progress.
+Written in Z80 assembler for the Sam Coupé computer.  Includes tweaked Protracker compiled music player and sound effects processor expanded from previous projects.  Also included, demo program I used to show my progress.
 
 
 CREDITS
@@ -31,3 +31,5 @@ For instant gratification, run demo program/auto.dsk.  Keys are:
 	F7-9:  Play tune
 	F1-6:  Play sound effect
 	Cursor up/down:  Music volume up/down
+	
+To read through the code, in both versions start with auto.asm as this includes other modules.
