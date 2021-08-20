@@ -1,0 +1,58 @@
+SETUP
+
+"comp.raw" should be placed at the beginning of a 16K boundary.  If it's in page y, first set the paging system:
+	ld a,y
+	ld (music.page),a		; 32775
+
+"admin.raw" should be paged into high memory when called, currently assembled at &8000.  It's only 1990 bytes, I can recompile to a better address if you prefer.  You'll only need to page in "admin.raw" for all the calls listed here - music calls will page "comp.raw" into low memory.  Let me know if you're using IM1 or something, and we'll figure out a better paging solution :)
+
+If you're *not* using interrupts, do this to get rid of a DI...EI pair within the tune setter routine:
+	xor a
+	ld (music.int1),a		; 32802
+	ld (music.int2),a		; 32847
+	
+Your main 50hz loop needs these in the loop somewhere (doesn't matter which order):
+	call music.play			; 32849
+	call sfx.update.out		; 34334
+
+
+IN-GAME USE
+
+First, page in "admin.raw" to high memory, then:
+
+To swap to new tune: 
+	ld a,[tune index]
+	call music.setA			; 32802
+
+	Tune indices:
+	music.intro:			equ 0
+	music.main:				equ 1
+	music.end:				equ 2
+
+To start a sound effect:
+	ld c,[effect index]
+	call sfx.setC.out		; 34073
+
+	Effect indices:
+	sfx.score_point:		equ 8 * 1		
+	sfx.score_complete:		equ 8 * 2
+	sfx.bubble_pop:			equ 8 * 3
+	sfx.bonus_arp:			equ 8 * 4
+	sfx.fanfare:			equ 8 * 5
+	sfx.level_complete:		equ 8 * 6
+	sfx.click:				equ 8 * 7		(keyboard click if you need it)
+
+
+VOLUMES
+
+Set overall music and sfx volumes with:
+	ld a,[0-15]
+	call music.set_volA		; 32869
+	
+	ld a,[0-15
+	ld (sfx.volume),a		; 33954
+	
+You can also use the overall killswitches to turn on/off music/SFX (this will preserve volumes when you turn them back on):
+	ld a,[on=0, off=-1]
+	ld (sfx.on),a			; 33953
+	ld (music.on),a			; 32774
