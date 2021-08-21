@@ -10,6 +10,7 @@
 
 auto.start:
 				di
+				; halt
 				jp main.start
 
 				ds &40
