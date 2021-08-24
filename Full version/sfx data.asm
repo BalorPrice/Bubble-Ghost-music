@@ -73,8 +73,8 @@ sfx.score_point.dataADS:
 ; Add point to score
 				db %01010000,%00000011
 				db &05,&30,&fc
-				db &05,&30,&fc
-				db &05,&a0,&fc
+				db &05,&30,&eb
+				db &05,&a0,&da
 				db &05,&a0,&b8
 				db &05,&a0,&63
 				
@@ -91,8 +91,8 @@ sfx.score_point.data2ADS:
 				db &03,&00,&00
 				
 				db &05,&30,&af
-				db &05,&30,&af
-				db &05,&a0,&af
+				db &05,&30,&9e
+				db &05,&a0,&8d
 				db &05,&a0,&6b
 				db &05,&a0,&16
 				db sfx.end

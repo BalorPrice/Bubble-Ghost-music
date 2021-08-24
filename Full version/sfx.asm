@@ -49,7 +49,7 @@ sfx.retriggerOff:	equ Off
 
 
 sfx.data.len:		equ @curr_vol2.os + 1
-sfx.slots.count:	equ 2
+sfx.slots.count:	equ 4
 sfx.data:			ds sfx.data.len * sfx.slots.count
 
 		
